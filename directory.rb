@@ -8,10 +8,14 @@ def input_students
   cohort = gets.chomp
   while !name.empty? && !cohort.empty? do
     students << {name: name, cohort: cohort}
-    puts "Now we have #{students.count} students".center(@line_width)
-    name = gets.chomp
-    puts "Please add cohort".center(@line_width)
-    cohort = gets.chomp
+      if students.count <= 1
+        puts "Now we have #{students.count} student".center(@line_width)
+      elsif students.count > 1
+        puts "Now we have #{students.count} students".center(@line_width)
+      end
+      name = gets.chomp
+      puts "Please add cohort".center(@line_width)
+      cohort = gets.chomp
   end
   students
 end
@@ -28,7 +32,11 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(@line_width)
+  if students.count <= 1
+    puts "Now we have #{students.count} student".center(@line_width)
+  elsif students.count > 1
+    puts "Now we have #{students.count} students".center(@line_width)
+  end
 end
 
 students = input_students
