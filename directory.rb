@@ -1,20 +1,20 @@
 @line_width=50
 @students = []
-
+@name = gets.gsub(/\n/,"")
 def input_students
   puts "Please enter the names of the students".center(@line_width)
   puts "To finish, just hit return twice".center(@line_width)
-  name = gets.gsub(/\n/,"")
+  @name = gets.gsub(/\n/,"")
   puts "Please add cohort".center(@line_width)
   cohort = gets.gsub(/\n/,"")
-  while !name.empty? && !cohort.empty? do
-    @students << {name: name, cohort: cohort.to_sym}
+  while !@name.empty? && !cohort.empty? do
+    @students << {name: @name, cohort: cohort.to_sym}
       if @students.count <= 1
         puts "Now we have #{@students.count} student".center(@line_width)
       elsif @students.count > 1
         puts "Now we have #{@students.count} students".center(@line_width)
       end
-      name = gets.gsub(/\n/,"")
+      @name = gets.gsub(/\n/,"")
       puts "Please add cohort".center(@line_width)
       cohort = gets.gsub(/\n/,"")
   end
@@ -58,10 +58,20 @@ def pick_letter(students)
     puts "wrong answer, you want to sort by letter!"
   end
 end
+def shorter_than_12characters(name)
+  puts "Would you like to get names shorter than 12 characters?"
+  answer = gets.chomp
+  if answer == "yes" && @name.length < 12
+    puts @name
+  else
+    "your name is too long!"
+  end
+end
 
 
 @students = input_students
 print_header
 print(@students)
 print_footer(@students)
-pick_letter(@students)
+#pick_letter(@students)
+shorter_than_12characters(@name)
