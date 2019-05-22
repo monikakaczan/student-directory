@@ -3,19 +3,19 @@ def input_students
   puts "Please enter the names of the students".center(@line_width)
   puts "To finish, just hit return twice".center(@line_width)
   students = []
-  name = gets.chomp
+  name = gets.gsub(/\n/,"")
   puts "Please add cohort".center(@line_width)
-  cohort = gets.chomp
+  cohort = gets.gsub(/\n/,"")
   while !name.empty? && !cohort.empty? do
-    students << {name: name, cohort: cohort}
+    students << {name: name, cohort: cohort.to_sym}
       if students.count <= 1
         puts "Now we have #{students.count} student".center(@line_width)
       elsif students.count > 1
         puts "Now we have #{students.count} students".center(@line_width)
       end
-      name = gets.chomp
+      name = gets.gsub(/\n/,"")
       puts "Please add cohort".center(@line_width)
-      cohort = gets.chomp
+      cohort = gets.gsub(/\n/,"")
   end
   students
 end
