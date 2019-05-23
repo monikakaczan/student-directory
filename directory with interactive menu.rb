@@ -64,8 +64,8 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-def save_students
-  file = File.open("students.csv", "w")
+def save_students(filename = "students.csv")
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
