@@ -8,13 +8,23 @@ def input_students
     age: "Never too old to program",
     height: "just right"
   }
+
+  cohorts = [:january,:february ,:march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
+
   puts "Please enter the names of the students".center(@line_width)
   puts "To finish, just hit return twice".center(@line_width)
   @name = gets.gsub(/\n/,"")
+
   while !@name.empty? do
     puts "Please add cohort".center(@line_width)
-    cohort = gets.gsub(/\n/,"").to_sym
-    if cohort.empty? then cohort = default_values[:cohort] end
+    cohort = gets.chomp
+    if cohort.empty? != true
+      while cohorts.include?(cohort) != true
+        puts "Error! Error! Please try again"
+        cohort = gets.gsub(/\n/,"").to_sym
+      end
+    else  cohort = default_values[:cohort]
+    end
 
     puts "Please add hobby".center(@line_width)
     hobby = gets.chomp
@@ -86,6 +96,11 @@ def shorter_than_12characters(name)
     puts "Okay then!".center(@line_width)
   end
 end
+
+#def select_by_cohort(students)
+#  sort = []
+#  puts "Please pick a cohort"
+
 
 @students = input_students
 print_header
