@@ -72,21 +72,21 @@ end
 def pick_letter(students)
   puts "Would you like to sort by letter?".center(@line_width)
   answer = gets.chomp
-  if answer == "yes".center(@line_width)
+  if answer == "yes"
     sort_students = []
     puts "Pick a letter".center(@line_width)
     choice = gets.chomp
     @students.each do |c|
       if c[:name][0] == choice
         sort_students << c
-      else puts "-"
+      else
       end
     end
     puts sort_students
   else
-    puts "wrong answer, you want to sort by letter!".center(@line_width)
   end
 end
+
 def shorter_than_12characters(name)
   puts "Would you like to get names shorter than 12 characters?".center(@line_width)
   answer = gets.chomp
@@ -96,11 +96,6 @@ def shorter_than_12characters(name)
     puts "Okay then!".center(@line_width)
   end
 end
-
-#def select_by_cohort(students)
-#  sort = []
-#  puts "Please pick a cohort"
-
 
 @students = input_students
 print_header
