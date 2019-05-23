@@ -57,7 +57,7 @@ end
 
 def print(students)
   if @students.length < 1
-    puts nil
+    return nil
   elsif @students.length >= 1
   @students.each.with_index(1) do |student, index|
     puts "#{index}.#{student[:name]}: #{student[:cohort]} cohort, hobby: #{student[:hobby]}, aged: #{student[:age]}, height: #{student[:height]}.".center(@line_width)
