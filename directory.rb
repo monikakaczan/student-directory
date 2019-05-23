@@ -16,15 +16,15 @@ def input_students
     cohort = gets.gsub(/\n/,"").to_sym
     if cohort.empty? then cohort = default_values[:cohort] end
 
-    puts "Please add hobby"
+    puts "Please add hobby".center(@line_width)
     hobby = gets.chomp
     if hobby.empty? then hobby = default_values[:hobby] end
 
-    puts "Please add age"
+    puts "Please add age".center(@line_width)
     age= gets.chomp
     if age.empty? then age = default_values[:age] end
 
-    puts "Please add height"
+    puts "Please add height".center(@line_width)
     height = gets.chomp
     if height.empty? then height = default_values[:height] end
 
@@ -60,11 +60,11 @@ def print_footer(students)
 end
 
 def pick_letter(students)
-  puts "Would you like to sort by letter?"
+  puts "Would you like to sort by letter?".center(@line_width)
   answer = gets.chomp
-  if answer == "yes"
+  if answer == "yes".center(@line_width)
     sort_students = []
-    puts "Pick a letter"
+    puts "Pick a letter".center(@line_width)
     choice = gets.chomp
     @students.each do |c|
       if c[:name][0] == choice
@@ -74,16 +74,16 @@ def pick_letter(students)
     end
     puts sort_students
   else
-    puts "wrong answer, you want to sort by letter!"
+    puts "wrong answer, you want to sort by letter!".center(@line_width)
   end
 end
 def shorter_than_12characters(name)
-  puts "Would you like to get names shorter than 12 characters?"
+  puts "Would you like to get names shorter than 12 characters?".center(@line_width)
   answer = gets.chomp
   if answer == "yes" && @name.length < 12
     puts @name
   elsif answer == "no"
-    puts "Okay then!"
+    puts "Okay then!".center(@line_width)
   end
 end
 
