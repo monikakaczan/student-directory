@@ -21,12 +21,12 @@ def process(selection)
     input_students
   when "2"
     show_students
-  when "9"
-    exit
   when "3"
     save_students
   when "4"
     load_students
+  when "9"
+    exit
   else
     puts "I don't know what you meant, try again"
   end
