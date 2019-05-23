@@ -1,24 +1,43 @@
 @line_width=50
 @students = []
-@name = gets.gsub(/\n/,"")
+@name
 def input_students
+  default_values = {
+    cohort: "Not sure yet what",
+    hobby: "Gaming!",
+    age: "Never too old to program",
+    height: "just right"
+  }
   puts "Please enter the names of the students".center(@line_width)
   puts "To finish, just hit return twice".center(@line_width)
   @name = gets.gsub(/\n/,"")
-  puts "Please add cohort".center(@line_width)
-  cohort = gets.gsub(/\n/,"")
-  while !@name.empty? && !cohort.empty? do
-    @students << {name: @name, cohort: cohort.to_sym}
-      if @students.count <= 1
-        puts "Now we have #{@students.count} student".center(@line_width)
-      elsif @students.count > 1
-        puts "Now we have #{@students.count} students".center(@line_width)
-      end
-      @name = gets.gsub(/\n/,"")
-      puts "Please add cohort".center(@line_width)
-      cohort = gets.gsub(/\n/,"")
+  while !@name.empty? do
+    puts "Please add cohort".center(@line_width)
+    cohort = gets.gsub(/\n/,"").to_sym
+    if cohort.empty? then cohort = default_values[:cohort] end
+
+    puts "Please add hobby"
+    hobby = gets.chomp
+    if hobby.empty? then hobby = default_values[:hobby] end
+
+    puts "Please add age"
+    age= gets.chomp
+    if age.empty? then age = default_values[:age] end
+
+    puts "Please add height"
+    height = gets.chomp
+    if height.empty? then height = default_values[:height] end
+
+    @students << {name: @name, cohort: cohort, hobby: hobby, age: age, height: height}
+
+    if @students.count <= 1
+      puts "Now we have #{@students.count} student".center(@line_width)
+    elsif @students.count > 1
+      puts "Now we have #{@students.count} students".center(@line_width)
+end
+    @name = gets.gsub(/\n/,"")
   end
-  @students
+    @students
 end
 
 def print_header
@@ -28,7 +47,7 @@ end
 
 def print(students)
   @students.each.with_index(1) do |student, index|
-    puts "#{index}.#{student[:name]} (#{student[:cohort]} cohort)".center(@line_width)
+    puts "#{index}.#{student[:name]}: #{student[:cohort]} cohort, hobby: #{student[:hobby]}, aged: #{student[:age]}, height: #{student[:height]}.".center(@line_width)
   end
 end
 
@@ -63,15 +82,14 @@ def shorter_than_12characters(name)
   answer = gets.chomp
   if answer == "yes" && @name.length < 12
     puts @name
-  else
-    "your name is too long!"
+  elsif answer == "no"
+    puts "Okay then!"
   end
 end
-
 
 @students = input_students
 print_header
 print(@students)
 print_footer(@students)
-#pick_letter(@students)
+pick_letter(@students)
 shorter_than_12characters(@name)
