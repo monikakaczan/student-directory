@@ -1,3 +1,4 @@
+require 'csv'
 @students = []
 
 def print_menu
@@ -72,13 +73,12 @@ end
 def save_students
   puts "Please enter a file name"
   filename = STDIN.gets.chomp
-  file = File.open(filename, "w")
+  CSV.open(filename, "w") do |csv_line|
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv_line << student_data.join(",")
   end
-  file.close
+end
 end
 
 def load_students(filename = STDIN.gets.chomp)
